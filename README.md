@@ -1,0 +1,2 @@
+# Software-log-Monitoring-system-using-Hybrid-Classification-Model
+The Software Log Classification project combines DBSCAN for anomaly detection, regex for log parsing, and Logistic Regression for classification. Pretrained LLMs enhance contextual accuracy, aiding error, threat, and performance issue detection. This hybrid approach automates log analysis, improving software monitoring and debugging.
