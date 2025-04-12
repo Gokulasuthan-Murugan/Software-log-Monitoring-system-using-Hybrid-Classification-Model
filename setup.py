@@ -3,13 +3,16 @@ from typing import List
 
 def get_requirements(file_path:str)->List[str]:
     '''
+    file_path:str ==> This is given beacuse we need to use only string
     this function will return the list of requiremnts.txt
+    List[str]==>This Function will return a list 
 
     '''
 
-    requirements=[]
+
     with open(file_path) as file_obj:
         requirements=file_obj.readlines()
+
         requirements=[req.replace("\n","") for req in requirements]
       
         if '-e .' in requirements:
