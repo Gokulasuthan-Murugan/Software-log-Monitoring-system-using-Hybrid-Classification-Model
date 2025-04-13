@@ -1,4 +1,7 @@
-pandas
-numpy
-seaborn
+pandas==2.2.3
+numpy==2.2.4
+seaborn==0.13.2
+wordcloud==1.9.4
+sentence_transformers==4.0.2
+scikit-learn==1.6.1
 -e .
