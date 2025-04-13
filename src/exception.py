@@ -1,10 +1,12 @@
 import sys 
 
 def error_message_details(error,error_details:sys): 
-    _,_,exc_tb=error_details.exc_info()
-    file_name=exc_tb.tb_fram.f_code.co_filename
-    error_message='error occured in python script name [{0}] line number [{1}] error message[{2}]'.format()
-    file_name,exc_tb.tb_lineno,str(error)
+    _,_,exc_tb=error_details.exc_info() # type,value,trace_back=sys.exc_info() # type==>type of the exception /value==>the actual error object / trace_back==>Holds the info about where the error occurred (filename, line no., etc.)
+    file_name=exc_tb.tb_frame.f_code.co_filename  #tb_fram==>it gives the current function frame where the exception occurred.
+    # f_code==>It holds metadata about the function like function name,filename 
+    # co_filenam==>returns the filename where the code cause error lives in  
+
+    error_message='error occured in python script name [{0}] line number [{1}] error message[{2}]'.format(file_name,exc_tb.tb_lineno,str(error))
     return error_message
 
 class CustomException(Exception):
