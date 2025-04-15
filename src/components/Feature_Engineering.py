@@ -1,6 +1,6 @@
 import os 
 import sys 
-import pickle 
+import pickle
 
 from sentence_transformers import SentenceTransformer
 from src.exception import CustomException
