@@ -34,7 +34,7 @@ class LogisticModel:
             logging.info(f"Train Data saved in {self.model_path.train_data_path}")
             test_data.to_csv(self.model_path.test_data_path,header=True,index=False)
             logging.info(f"Test Data saved in {self.model_path.test_data_path}")
-
+            
             # Load Saved Model Column Transformer
             with open('Saved_Models/Column_Transformer.pkl','rb') as f:
                 model_embeddings=pickle.load(f)
@@ -65,8 +65,19 @@ class LogisticModel:
         try:
             with open(self.model_path.logistic_model_path,'rb') as f:
                 log_model=pickle.load(f)
-            predict_probability=log_model.predict_prob
-            
+
+            with open('Saved_Models/Column_Transformer.pkl','rb') as f:
+                Column_Transformer=pickle.load(f)
+
+            embeddings=Column_Transformer.encode(log_message).reshape(1,-1)
+            predict_probability=log_model.predict_proba(embeddings).reshape(-1)
+            if max(predict_probability)>0.5:
+                print(log_model.predict(embeddings))
+                return log_model.predict(embeddings)
+            else:
+                return "unknown"
+                
+
         except Exception as e:
             raise CustomException(e,sys)
         
@@ -75,7 +86,7 @@ class LogisticModel:
         
 if __name__=="__main__":
     obj=LogisticModel()
-    obj.initiate_logistic_model()
+    obj.Classify_log_model("Unauthorized access to data was attempted")
 
 
         
