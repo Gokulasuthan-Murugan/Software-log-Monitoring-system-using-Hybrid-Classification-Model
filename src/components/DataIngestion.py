@@ -16,10 +16,11 @@ class DataIngestion:
     def __init__(self):
         self.ingestion_config=DataIngestionConfig()
 
-    def initiate_data_ingestion(self):
+    def initiate_data_ingestion(self,Data_path):
         logging.info('Method Data Ingestion')
         try:
-            df=pd.read_csv(r'E:\Software-log-Monitoring-system-using-Hybrid-Classification-Model\notebook\synthetic_logs.csv')
+            self.input_path=Data_path or "E:\\Software-log-Monitoring-system-using-Hybrid-Classification-Model\\notebook\\synthetic_logs.csv"
+            df=pd.read_csv(self.input_path)
             logging.info('Read the dataset as a dataFrame')
             
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exist_ok=True) #To make artifacts folder
@@ -45,4 +46,4 @@ Because we can reuse the code if we want to use it in some other module
 
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    obj.initiate_data_ingestion('E:\\Software-log-Monitoring-system-using-Hybrid-Classification-Model\\notebook\\synthetic_logs.csv')

@@ -2,7 +2,7 @@ import os
 import sys 
 import pickle
 
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer # type: ignore
 from src.exception import CustomException
 from src.logger import logging
 from dataclasses import dataclass 

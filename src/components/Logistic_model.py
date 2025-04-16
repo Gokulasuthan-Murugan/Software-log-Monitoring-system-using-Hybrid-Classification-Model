@@ -19,12 +19,13 @@ class LogisticModel:
     def __init__(self):
         self.model_path=LogisticModelConfig()
 
-    def train_logistic_model(self):
+    def train_logistic_model(self,Data_Path):
         try:
             os.makedirs(os.path.dirname(self.model_path.logistic_model_path),exist_ok=True)
             logisticmodel=LogisticRegression()
             logging.info("Read Data...")
-            data=pd.read_csv(r'artifacts/clustered_data.csv')
+            self.input_path=Data_Path or 'artifacts\\clustered_data.csv'
+            data=pd.read_csv(self.input_path)
             logging.info("Data Loaded Successfully")
 
             data_final=data[data['source']!='LegacyCRM']
@@ -85,7 +86,7 @@ class LogisticModel:
 
         
 if __name__=="__main__":
-    obj=LogisticModel()
+    obj=LogisticModel('artifacts\\clustered_data.csv')
     obj.Classify_log_model("Unauthorized access to data was attempted")
 
 

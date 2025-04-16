@@ -17,7 +17,7 @@ class Clustering:
     def __init__(self):
         self.clustering_config=ClusteringConfig()
     
-    def initiate_clustering(self):
+    def initiate_clustering(self,Data_Path):
         try:
             os.makedirs(os.path.dirname(self.clustering_config.clustered_data_path),exist_ok=True)
             os.makedirs(os.path.dirname(self.clustering_config.clustering_model_path),exist_ok=True)
@@ -26,7 +26,8 @@ class Clustering:
                 embedding_model=pickle.load(f)
             logging.info('Column_Transformer initiated_successfully')
             logging.info('Load Data...')
-            df=pd.read_csv(r'artifacts/data.csv')
+            self.input_path=Data_Path or 'artifacts\\data.csv'
+            df=pd.read_csv(self.input_path)
             logging.info("Data Loaded Successfully")
             # Perform Embedding using Column Transformer
             logging.info('Initiated Embeddings')
@@ -52,7 +53,7 @@ class Clustering:
 
 if __name__=="__main__":
     obj=Clustering()
-    obj.initiate_clustering()
+    obj.initiate_clustering('artifacts\\data.csv')
 
 
 
