@@ -27,3 +27,11 @@ setup(
     packages=find_packages(),
     install_requires=get_requirements('requirements.txt')
 )
+
+
+"""
+if we use setup.py we can make our whole project into module that means we can able to use any libraries any where any folder
+for eg :
+if we have a function preprocess.py in a folder src and normally we cannot able to use it inside any other folder 
+in order to use it we need to use setup.py where it install all the folder similar to libraries like seaborn
+"""

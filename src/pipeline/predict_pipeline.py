@@ -23,13 +23,16 @@ class PredictionPipeline:
             if self.regex_matcher.classify_regex(message)!=None:
                 print(self.regex_matcher.classify_regex(message))
                 logging.info(f'Identified {self.regex_matcher.classify_regex(message)} through Regex')
+                return self.regex_matcher.classify_regex(message)
             elif self.logisticmodel.Classify_log_model(message) !="unknown":
                 print(self.logisticmodel.Classify_log_model(message))
                 logging.info(f'Identified {self.logisticmodel.Classify_log_model(message)} class through Logistic_Regression')
+                return self.logisticmodel.Classify_log_model(message)
             else:
                 print(self.LLM_classifier.classify_log_message(message))
                 
                 logging.info(f'Identified {self.LLM_classifier.classify_log_message(message)} through LLM model llama3-70b-8192')
+                return self.LLM_classifier.classify_log_message(message)
         except Exception as e:
             raise CustomException(e,sys)
 

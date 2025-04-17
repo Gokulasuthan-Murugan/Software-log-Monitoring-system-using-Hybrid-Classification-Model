@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Monitoring - Prediction</title>
+    <script>
+        async function sendPrediction() {
+            const message = document.getElementById("logMessage").value;
+
+            const response = await fetch("/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            const result = await response.json();
+            const output = document.getElementById("result");
+
+            if (response.ok) {
+                output.textContent = `Prediction: ${result.prediction}`;
+            } else {
+                output.textContent = `Error: ${result.error}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Log Monitoring - Predict Log Message</h1>
+    <textarea id="logMessage" rows="5" cols="60" placeholder="Enter a log message here..."></textarea><br><br>
+    <button onclick="sendPrediction()">Predict</button>
+    <p id="result" style="font-weight: bold; color: blue;"></p>
+</body>
+</html>
+
