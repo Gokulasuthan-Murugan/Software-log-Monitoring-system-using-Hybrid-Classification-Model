@@ -1,14 +1,14 @@
 import os
 import sys
 
-from groq import Groq
+from groq import Groq # type: ignore
 
 from src.exception import CustomException
 from src.logger import logging
 
 class LLMClassifier:
     def __init__(self):
-        os.environ["GROQ_API_KEY"] = "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"  
+        os.environ["GROQ_API_KEY"] = ""  
         self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
     def classify_log_message(self, log_message: str):
