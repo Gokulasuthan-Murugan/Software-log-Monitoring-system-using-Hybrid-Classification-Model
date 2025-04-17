@@ -31,7 +31,7 @@ class Clustering:
             logging.info("Data Loaded Successfully")
             # Perform Embedding using Column Transformer
             logging.info('Initiated Embeddings')
-            embeddings=embedding_model.encode(df['log_message'].tolist())
+            embeddings=embedding_model.encode(df['log_message'].tolist(),show_progress_bar=False)
             logging.info('Embedding Completed Successfully')
 
             # DBSCAN Clustering

@@ -42,7 +42,7 @@ class LogisticModel:
                 model_embeddings=pickle.load(f)
 
             # Embeddings
-            embeddings=model_embeddings.encode(train_data['log_message'].tolist())
+            embeddings=model_embeddings.encode(train_data['log_message'].tolist(),show_progress_bar=False)
 
             #Initialize X and y 
 
@@ -72,11 +72,11 @@ class LogisticModel:
             with open('Saved_Models/Column_Transformer.pkl','rb') as f:
                 Column_Transformer=pickle.load(f)
 
-            embeddings=Column_Transformer.encode(log_message).reshape(1,-1)
+            embeddings=Column_Transformer.encode(log_message,show_progress_bar=False).reshape(1,-1)
             predict_probability=log_model.predict_proba(embeddings).reshape(-1)
             if max(predict_probability)>0.5:
-                print(log_model.predict(embeddings))
-                return log_model.predict(embeddings)
+
+                return log_model.predict(embeddings)[0]
             else:
                 return "unknown"
                 
@@ -88,7 +88,8 @@ class LogisticModel:
 
         
 if __name__=="__main__":
-    obj=LogisticModel('artifacts\\clustered_data.csv')
+    obj=LogisticModel()
+    #obj.train_logistic_model('artifacts\\clustered_data.csv')
     obj.Classify_log_model("Unauthorized access to data was attempted")
 
 

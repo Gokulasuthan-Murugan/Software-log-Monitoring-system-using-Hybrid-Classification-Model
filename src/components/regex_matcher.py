@@ -22,7 +22,6 @@ class Regular_Expression:
         try:
             for pattern,label in self.regex_patterns.items():
                 if re.search(pattern,log_message,re.IGNORECASE):
-                    logging.info(f"Regular Expression Matched {label}")
                     return label
             return None
 
