@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from src.exception import CustomException
 from src.logger import logging
 
+@dataclass
 class LogisticModelConfig:
     logistic_model_path:str=os.path.join('Saved_Models','Logistic_Model.pkl')
     train_data_path:str=os.path.join('artifacts',"train_clusterd_data.csv")
@@ -58,6 +59,7 @@ class LogisticModel:
             with open(self.model_path.logistic_model_path,'wb') as f:
                 pickle.dump(log_model,f)
             logging.info(f'Model saved successfully in {self.model_path.logistic_model_path}')
+            return self.model_path.logistic_model_path
     
         except Exception as e:
             raise CustomException(e,sys)
